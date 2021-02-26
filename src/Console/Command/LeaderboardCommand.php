@@ -23,6 +23,8 @@ final class LeaderboardCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
+        $speakers = $this->speakerRepository->findAll();
+
         $table = new Table($output);
         $table->setStyle('borderless');
         $table->setHeaders(['Speaker name', 'Number of talks']);
