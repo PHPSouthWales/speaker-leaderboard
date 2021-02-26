@@ -14,6 +14,7 @@ final class LeaderboardCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output): int
     {
         $table = new Table($output);
+        $table->setStyle('borderless');
         $table->setHeaders(['Speaker name', 'Number of talks']);
         $table->addRow(['Oliver Davies', 3]);
         $table->render();
