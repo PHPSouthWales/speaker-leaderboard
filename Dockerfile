@@ -2,6 +2,8 @@ FROM php:8.0-cli
 
 WORKDIR /app
 
+ENV PATH=bin:$PATH
+
 RUN apt update -yqq \
     && apt install -yqq \
         git \
