@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
+use Tightenco\Collect\Support\Collection;
+
 interface SpeakerRepository
 {
-    public function findAll(): array;
+    public function findAll(): Collection;
 }

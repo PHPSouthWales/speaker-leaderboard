@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
+use Tightenco\Collect\Support\Collection;
+
 final class SpeakerApiRepository implements SpeakerRepository
 {
-    public function findAll(): array
+    public function findAll(): Collection
     {
-        return [];
+        return new Collection();
     }
 }
