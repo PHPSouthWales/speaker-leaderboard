@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Console\Command;
 
+use App\Console\Command\LeaderboardCommand;
 use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
