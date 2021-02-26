@@ -18,6 +18,8 @@ final class LeaderboardCommandTest extends WebTestCase
         $commandTester = new CommandTester($command);
 
         $commandTester->execute([]);
+
+        $this->assertSame(0, $commandTester->getStatusCode());
     }
 
     private function getContainer(): ContainerInterface
