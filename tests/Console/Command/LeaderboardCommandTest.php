@@ -12,6 +12,7 @@ final class LeaderboardCommandTest extends WebTestCase
     /** @test */
     public function it_generates_a_leaderboard_of_speakers(): void
     {
+        $command = $this->getContainer()->get(LeaderboardCommand::class);
     }
 
     private function getContainer(): ContainerInterface
