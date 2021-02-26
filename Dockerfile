@@ -2,4 +2,15 @@ FROM php:8.0-cli
 
 WORKDIR /app
 
+RUN apt update -yqq \
+    && apt install -yqq \
+        git \
+        unzip \
+        zip
+
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+
+COPY composer.json composer.lock /app/
+RUN composer install
+
 COPY . /app
