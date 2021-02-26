@@ -15,6 +15,7 @@ final class LeaderboardCommand extends Command
     {
         $table = new Table($output);
         $table->setHeaders(['Speaker name', 'Number of talks']);
+        $table->addRow(['Oliver Davies', 3]);
         $table->render();
 
         return 0;
