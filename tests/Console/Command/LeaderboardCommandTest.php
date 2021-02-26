@@ -20,6 +20,9 @@ final class LeaderboardCommandTest extends WebTestCase
         $commandTester->execute([]);
 
         $this->assertSame(0, $commandTester->getStatusCode());
+
+        $this->assertStringContainsString('3', $commandTester->getDisplay());
+        $this->assertStringContainsString('Oliver Davies', $commandTester->getDisplay());
     }
 
     private function getContainer(): ContainerInterface
