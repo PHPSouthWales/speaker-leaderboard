@@ -15,6 +15,21 @@ final class SpeakerApiRepository implements SpeakerRepository
 
     public function findAll(): Collection
     {
-        return new Collection();
+        $response = $this->client->request(
+            'GET',
+            $_ENV['API_SPEAKER_ENDPOINT_URL'],
+            [
+                'query' => [
+                    'fields[node--talk]' => 'title,field_speakers',
+                    'fields[node--person]' => 'title',
+                    'include' => 'field_speakers',
+                ],
+            ],
+        )->toArray();
+
+        assert(array_key_exists('data', $response));
+        assert(array_key_exists('included', $response));
+
+        return new Collection($response['data']);
     }
 }
