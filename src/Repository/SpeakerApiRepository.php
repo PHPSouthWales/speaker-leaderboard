@@ -30,6 +30,28 @@ final class SpeakerApiRepository implements SpeakerRepository
         assert(array_key_exists('data', $response));
         assert(array_key_exists('included', $response));
 
-        return new Collection($response['data']);
+        $talkCollection = new Collection($response['data']);
+        $includedCollection = new Collection($response['included']);
+
+        return $talkCollection
+            ->map(function (array $talk) use ($includedCollection): array {
+                $speaker = $includedCollection->first(function (array $item) use ($talk): bool {
+                    if ($item['type'] != 'node--person') {
+                        return false;
+                    }
+
+                    return $item['id'] == $talk['relationships']['field_speakers']['data'][0]['id'];
+                });
+
+                return [$talk, $speaker];
+            })
+            ->map(function (array $talkAndSpeaker): array {
+                [$talk, $speaker] = $talkAndSpeaker;
+
+                return [
+                    'speaker_name' => $speaker['attributes']['title'],
+                    'talk_name' => $talk['attributes']['title'],
+                ];
+            });
     }
 }
