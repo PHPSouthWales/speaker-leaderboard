@@ -9,6 +9,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Tightenco\Collect\Support\Collection;
 
 final class LeaderboardCommand extends Command
@@ -24,6 +25,8 @@ final class LeaderboardCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
+        $style = new SymfonyStyle($input, $output);
+
         $speakers = $this->speakerRepository->findAll();
 
         $results = $speakers
@@ -37,7 +40,11 @@ final class LeaderboardCommand extends Command
             ->sortBy('speaker_name')
             ->sortByDesc('talk_count');
 
-        // @TODO: Display summary (x number of talks from y speakers).
+        $style->info(sprintf(
+            '%d talks from %d speakers.',
+            $results->pluck('talk_count')->sum(),
+            $results->count()
+        ));
 
         $table = new Table($output);
         $table->setStyle('borderless');
