@@ -25,6 +25,8 @@ final class LeaderboardCommand extends Command
     {
         $speakers = $this->speakerRepository->findAll();
 
+        // @TODO: Display summary (x number of talks from y speakers).
+
         $table = new Table($output);
         $table->setStyle('borderless');
         $table->setHeaders(['Speaker name', 'Number of talks']);
