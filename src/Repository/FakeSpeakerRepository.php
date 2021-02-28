@@ -10,6 +10,11 @@ class FakeSpeakerRepository implements SpeakerRepository
 {
     public function findAll(): Collection
     {
-        return new Collection();
+        return new Collection([
+           [
+               'speaker_name' => 'Oliver Davies',
+               'talk_name' => 'Creating Presentations with rst2pdf (lightning talk)',
+           ]
+        ]);
     }
 }
