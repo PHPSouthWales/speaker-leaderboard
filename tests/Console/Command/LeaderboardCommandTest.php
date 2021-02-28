@@ -21,7 +21,11 @@ final class LeaderboardCommandTest extends WebTestCase
 
         $this->assertSame(0, $commandTester->getStatusCode());
 
-        $this->assertRegExp('/Oliver Davies\s+1/', $commandTester->getDisplay());
+        $display = $commandTester->getDisplay();
+        $this->assertStringContainsString('Speaker name', $display);
+        $this->assertStringContainsString('Number of talks', $display);
+        $this->assertRegExp('/Oliver Davies\s+1/', $display);
+    }
     }
 
     private function getContainer(): ContainerInterface
