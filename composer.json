@@ -10,6 +10,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "symfony/browser-kit": "5.2.*",
+        "symfony/cache": "5.2.*",
         "symfony/console": "5.2.*",
         "symfony/css-selector": "5.2.*",
         "symfony/dotenv": "5.2.*",
