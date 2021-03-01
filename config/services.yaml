@@ -31,4 +31,4 @@ services:
     # please note that last definitions always *replace* previous ones
 
     App\Repository\SpeakerRepository:
-        class: App\Repository\SpeakerApiRepository
+        class: App\Repository\CachedSpeakerApiRepository
