@@ -16,8 +16,8 @@ final class LeaderboardCommand extends Command
     protected static $defaultName = 'php-south-wales:generate-leaderboard';
 
     public function __construct(
+        private LeaderboardCommandController $controller,
         string $name = null,
-        private LeaderboardCommandController $controller
     ) {
         parent::__construct($name);
     }
