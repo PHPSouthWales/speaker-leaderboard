@@ -17,10 +17,12 @@ final class CachedSpeakerApiRepository implements SpeakerRepository
 
     public function findAll(): Collection
     {
-        return $this->cache->get('api.speaker_info', function (ItemInterface $item): Collection {
-            $item->expiresAt(date_create('tomorrow'));
+        return $this->cache->get(
+            key: 'api.speaker_info',
+            callback: function (ItemInterface $item): Collection {
+                $item->expiresAt(date_create('tomorrow'));
 
-            return $this->speakerRepository->findAll();
-        });
+                return $this->speakerRepository->findAll();
+            });
     }
 }

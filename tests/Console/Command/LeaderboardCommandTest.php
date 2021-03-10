@@ -19,12 +19,25 @@ final class LeaderboardCommandTest extends WebTestCase
 
         $commandTester->execute([]);
 
-        $this->assertSame(0, $commandTester->getStatusCode());
+        $this->assertSame(
+            expected: 0,
+            actual: $commandTester->getStatusCode(),
+        );
 
         $display = $commandTester->getDisplay();
-        $this->assertStringContainsString('Speaker name', $display);
-        $this->assertStringContainsString('Number of talks', $display);
-        $this->assertRegExp('/Oliver Davies\s+1/', $display);
+
+        $this->assertStringContainsString(
+            needle: 'Speaker name',
+            haystack: $display,
+        );
+        $this->assertStringContainsString(
+            needle: 'Number of talks',
+            haystack: $display,
+        );
+        $this->assertRegExp(
+            pattern: '/Oliver Davies\s+1/',
+            string: $display,
+        );
     }
 
     /** @test */
@@ -35,7 +48,10 @@ final class LeaderboardCommandTest extends WebTestCase
 
         $commandTester->execute([]);
 
-        $this->assertStringContainsString('[INFO] 1 talks from 1 speakers.', $commandTester->getDisplay());
+        $this->assertStringContainsString(
+            needle: '[INFO] 1 talks from 1 speakers.',
+            haystack: $commandTester->getDisplay(),
+        );
     }
 
     private function getContainer(): ContainerInterface
