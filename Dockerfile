@@ -29,3 +29,9 @@ WORKDIR /app
 COPY --from=build-composer /app /app
 
 ENTRYPOINT ["bash"]
+
+###
+
+FROM build AS app
+
+ENTRYPOINT ["bin/console"]
