@@ -1,8 +1,19 @@
 version: '2.4'
+volumes:
+  bin: ~
+  vendor: ~
 services:
   cli:
     build:
       context: .
       target: build
     volumes:
+      - .:/app
+  composer:
+    build:
+      context: .
+      target: build-composer
+    volumes:
+      - bin:/app/bin
+      - vendor:/app/vendor
       - .:/app
