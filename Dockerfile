@@ -8,7 +8,8 @@ RUN apt update -yqq \
     && apt install -yqq \
         git \
         unzip \
-        zip
+        zip \
+    && apt autoremove -yqq
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
