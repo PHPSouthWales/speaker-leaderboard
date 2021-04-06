@@ -14,12 +14,6 @@ services:
       - .:/app
     depends_on:
       - composer
-  cli:
-    build:
-      context: .
-      target: build
-    volumes:
-      - .:/app
   composer:
     build:
       context: .
