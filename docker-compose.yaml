@@ -3,5 +3,6 @@ services:
   cli:
     build:
       context: .
+      target: build
     volumes:
       - .:/app

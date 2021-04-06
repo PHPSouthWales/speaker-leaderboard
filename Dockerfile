@@ -1,8 +1,10 @@
-FROM php:8-cli
+FROM php:8-cli AS base
+
+###
+
+FROM base AS build-composer
 
 WORKDIR /app
-
-ENV PATH=bin:$PATH
 
 RUN apt update -yqq \
     && apt install -yqq \
@@ -16,4 +18,14 @@ COPY --from=composer /usr/bin/composer /usr/bin/composer
 COPY composer.json composer.lock /app/
 RUN composer install
 
-COPY . /app
+ENTRYPOINT ["composer"]
+
+###
+
+FROM base AS build
+
+WORKDIR /app
+
+COPY --from=build-composer /app /app
+
+ENTRYPOINT ["bash"]
