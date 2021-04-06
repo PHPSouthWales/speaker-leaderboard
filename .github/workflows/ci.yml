@@ -15,13 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@a81bbbf8298c0fa03ea29cdc473d45769f953675
 
-      - name: Build Docker container
-        run: docker build . -t leaderboard:latest
-
-      - name: Install Composer dependencies
-        run: |
-          docker run leaderboard composer validate --strict
-          docker run leaderboard composer install
+      - name: Build Docker containers
+        run: docker-compose build
 
       - name: Run tests
-        run: docker run leaderboard phpunit --testdox --colors=always
+        run: docker-compose run --rm composer test
