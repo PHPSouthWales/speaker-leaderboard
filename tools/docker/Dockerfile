@@ -16,6 +16,7 @@ RUN apt update -yqq \
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
 COPY composer.json composer.lock ./
+RUN composer validate --strict
 RUN composer install
 
 ENTRYPOINT ["composer"]
