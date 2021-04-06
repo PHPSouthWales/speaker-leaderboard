@@ -4,18 +4,14 @@ A Symfony Console application that shows a list of all of the speakers we've had
 
 ## Usage
 
-Building the Docker container:
+Building the Docker containers:
 
-    docker build . -t leaderboard:latest
+    docker-compose build
 
 Running tests:
 
-    docker run -it -u $UID:$GID leaderboard phpunit
+    docker-compose run --rm composer test
 
 Generating the leaderboard:
 
-    docker run -it -u $UID:$GID leaderboard console php-south-wales:generate-leaderboard
-
-Working with a local volume:
-
-    docker run -it -u $UID:$GID -v $(pwd):/app leaderboard console php-south-wales:generate-leaderboard
+    docker-compose run --rm app php-south-wales:generate-leaderboard
