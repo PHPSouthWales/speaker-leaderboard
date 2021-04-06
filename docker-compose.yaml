@@ -5,6 +5,7 @@ volumes:
 services:
   app:
     build:
+      dockerfile: tools/docker/Dockerfile
       context: .
       target: app
     volumes:
@@ -16,6 +17,7 @@ services:
       - composer
   composer:
     build:
+      dockerfile: tools/docker/Dockerfile
       context: .
       target: build-composer
     volumes:
