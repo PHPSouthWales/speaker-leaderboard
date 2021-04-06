@@ -15,7 +15,7 @@ RUN apt update -yqq \
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-COPY composer.json composer.lock /app/
+COPY composer.json composer.lock ./
 RUN composer install
 
 ENTRYPOINT ["composer"]
@@ -26,7 +26,7 @@ FROM base AS build
 
 WORKDIR /app
 
-COPY --from=build-composer /app /app
+COPY --from=build-composer /app .
 
 ENTRYPOINT ["bash"]
 
