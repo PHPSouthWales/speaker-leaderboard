@@ -17,6 +17,9 @@ jobs:
 
       - name: Build Docker containers
         run: docker-compose build
+        env:
+          COMPOSE_DOCKER_CLI_BUILD: 1
+          DOCKER_BUILDKIT: 1
 
       - name: Run tests
         run: docker-compose run --rm composer test
