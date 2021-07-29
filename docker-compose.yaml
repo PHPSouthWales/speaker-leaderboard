@@ -1,26 +1,10 @@
 version: '2.4'
-volumes:
-  bin: ~
-  vendor: ~
+
 services:
   app:
     build:
       dockerfile: tools/docker/Dockerfile
       context: .
-      target: app
     volumes:
       - /app/var
-      - bin:/app/bin
-      - vendor:/app/vendor
-      - .:/app
-    depends_on:
-      - composer
-  composer:
-    build:
-      dockerfile: tools/docker/Dockerfile
-      context: .
-      target: build-composer
-    volumes:
-      - bin:/app/bin
-      - vendor:/app/vendor
       - .:/app

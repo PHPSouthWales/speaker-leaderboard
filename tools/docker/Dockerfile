@@ -2,7 +2,7 @@ FROM php:8-cli AS base
 
 ###
 
-FROM base AS build-composer
+FROM base AS dev
 
 WORKDIR /app
 
@@ -15,24 +15,15 @@ RUN apt update -yqq \
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-COPY composer.json composer.lock ./
+COPY composer.json .
+COPY composer.lock .
 RUN composer validate --strict
 RUN composer install
-
-ENTRYPOINT ["composer"]
-
-###
-
-FROM base AS build
-
-WORKDIR /app
-
-COPY --from=build-composer /app .
-
-ENTRYPOINT ["bash"]
+COPY . .
 
 ###
 
-FROM build AS app
+FROM dev AS app
 
 ENTRYPOINT ["bin/console"]
+CMD ["php-south-wales:generate-leaderboard"]
